@@ -53,10 +53,8 @@ zstyle ':editor' key-bindings '<%= has_feature?("vim") ? "vi" : "emacs" %>'
 source "${ZSH_PLUGINS_DIR}/zgen/zgen.zsh"
 
 # Post-configuration for plugins ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 # Configure zsh-syntax-highlighting.
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
-
 # Configure zsh-history-substring-search.
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=white,bold'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
@@ -74,13 +72,10 @@ if [[ -n "${key_info}" ]]; then
     bindkey -M "$keymap" "$key_info[Down]" history-substring-search-down
   done
 fi
-
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # Plugins declaration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-# Check if there's no init script.
-if ! zgen saved; then
+if ! zgen saved; then # Check if there's no init script.
 
   zgen load Tarrasch/zsh-functional # Functional-style functions.
   zgen load mafredri/zsh-async # Async functions.
@@ -104,7 +99,6 @@ if ! zgen saved; then
   # Save all to init script.
   zgen save
 fi
-
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # vim: set filetype=zsh :
