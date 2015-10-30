@@ -8,3 +8,4 @@ zsh:
 
 features:
   - zsh
+  - vim
