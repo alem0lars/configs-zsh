@@ -1,60 +1,71 @@
 #!/usr/bin/env zsh
 #
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-#                                                                              ┃
-# File informations:                                                           ┃
-# - Name:    elems/zshrc.tt                                                    ┃
-# - Summary: This file is sourced in interactive shells. It should contain     ┃
-#            commands to set up aliases, functions, options, keybindings, etc. ┃
-# - Authors:                                                                   ┃
-#   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              ┃
-#                                                                              ┃
-# Project informations:                                                        ┃
-#   - Homepage:        https://github.com/alem0lars/configs-zsh                ┃
-#   - Getting started: see README.md in the project root folder                ┃
-#                                                                              ┃
-# License: Apache v2.0 (see below)                                             ┃
-#                                                                              ┃
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-#                                                                              ┃
-# Licensed to the Apache Software Foundation (ASF) under one more contributor  ┃
-# license agreements.  See the NOTICE file distributed with this work for      ┃
-# additional information regarding copyright ownership. The ASF licenses this  ┃
-# file to you under the Apache License, Version 2.0 (the "License"); you may   ┃
-# not use this file except in compliance with the License.                     ┃
-# You may obtain a copy of the License at                                      ┃
-#                                                                              ┃
-#   http://www.apache.org/licenses/LICENSE-2.0                                 ┃
-#                                                                              ┃
-# Unless required by applicable law or agreed to in writing, software          ┃
-# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    ┃
-# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             ┃
-# See the License for the specific language governing permissions and          ┃
-# limitations under the License.                                               ┃
-#                                                                              ┃
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+# ─────────────────────────────────────────────────────────────────────────────┐
+#                                                                              │
+# File informations:                                                           │
+# - Name:    elems/zshrc.tt                                                    │
+# - Summary: This file is sourced in interactive shells. It should contain     │
+#            commands to set up aliases, functions, options, keybindings, etc. │
+# - Authors:                                                                   │
+#   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+#                                                                              │
+# Project informations:                                                        │
+#   - Homepage:        https://github.com/alem0lars/configs-zsh                │
+#   - Getting started: see README.md in the project root folder                │
+#                                                                              │
+# License: Apache v2.0 (see below)                                             │
+#                                                                              │
+# ─────────────────────────────────────────────────────────────────────────────┤
+#                                                                              │
+# Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+# license agreements.  See the NOTICE file distributed with this work for      │
+# additional information regarding copyright ownership. The ASF licenses this  │
+# file to you under the Apache License, Version 2.0 (the "License"); you may   │
+# not use this file except in compliance with the License.                     │
+# You may obtain a copy of the License at                                      │
+#                                                                              │
+#   http://www.apache.org/licenses/LICENSE-2.0                                 │
+#                                                                              │
+# Unless required by applicable law or agreed to in writing, software          │
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+# See the License for the specific language governing permissions and          │
+# limitations under the License.                                               │
+#                                                                              │
+# ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"zsh.custom_dir", type: :directory, default: [], as: :custom_dir
+end -%>
+# ─────────────────────────────────────────────────────────────────────────────┘
 
-# Global configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-export ZSH_ROOT_DIR="<%= File.expand_path get_var!('zsh.custom_dir') %>"
+# ┌────────────────────────────────────────────────────────────────────────────┐
+# ├→ Global configuration ─────────────────────────────────────────────────────┤
+
+export ZSH_ROOT_DIR="<%= local! :custom_dir %>"
 export ZSH_PLUGINS_DIR="${ZSH_ROOT_DIR}/plugins"
 export ZSH_PLUGINS_CONFIGS_DIR="${ZSH_PLUGINS_DIR}/configs"
 export ZSH_CACHE_DIR="${HOME}/.zcache"
 [[ ! -d ${ZSH_CACHE_DIR} ]] && mkdir -p "${ZSH_CACHE_DIR}"
 export ZGEN_DIR="${ZSH_PLUGINS_DIR}/repos"
 export ZGEN_INIT="${ZSH_PLUGINS_DIR}/init.zsh"
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Zstyles for plugins ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ├────────────────────────────────────────────────────────────────────────────┤
+# ├→ Zstyles for plugins ──────────────────────────────────────────────────────┤
+
 zstyle ':editor' dot-expansion 'yes'
-zstyle ':editor' key-bindings '<%= has_feature?("vim") ? "vi" : "emacs" %>'
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+zstyle ':editor' key-bindings '<%= has_feature?(:vim) ? :vi : :emacs %>'
 
-# Load ZGen
+# ├────────────────────────────────────────────────────────────────────────────┤
+# ├→ Load ZGen ────────────────────────────────────────────────────────────────┤
+
 source "${ZSH_PLUGINS_DIR}/zgen/zgen.zsh"
 
-# Post-configuration for plugins ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ├────────────────────────────────────────────────────────────────────────────┤
+# ├→ Post-configuration for plugins ───────────────────────────────────────────┤
+
 # Configure zsh-syntax-highlighting.
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
+
 # Configure zsh-history-substring-search.
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=white,bold'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
@@ -72,9 +83,10 @@ if [[ -n "${key_info}" ]]; then
     bindkey -M "$keymap" "$key_info[Down]" history-substring-search-down
   done
 fi
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# Plugins declaration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ├────────────────────────────────────────────────────────────────────────────┤
+# ├→ Plugins declaration ──────────────────────────────────────────────────────┤
+
 if ! zgen saved; then # Check if there's no init script.
 
   zgen load Tarrasch/zsh-functional # Functional-style functions.
@@ -99,6 +111,7 @@ if ! zgen saved; then # Check if there's no init script.
   # Save all to init script.
   zgen save
 fi
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# vim: set filetype=zsh :
+# ─────────────────────────────────────────────────────────────────────────────┘
+
+# vim: set filetype=eruby.zsh :

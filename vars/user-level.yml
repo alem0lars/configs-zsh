@@ -5,7 +5,3 @@ zsh:
   zlogout_path: ~/.zlogout
   history_file: ~/.zhistory
   custom_dir: ~/.zsh
-
-features:
-  - zsh
-  - vim
