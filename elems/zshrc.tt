@@ -97,6 +97,7 @@ if ! zgen saved; then # Check if there's no init script.
   zgen load alem0lars/zsh-history # History options.
   zgen load alem0lars/zsh-directory # Directory options.
 
+  zgen load hlissner/zsh-autopair # Auto-close and delete matching delimiters.
   zgen load zsh-users/zsh-syntax-highlighting # Highlight words.
   zgen load zsh-users/zsh-history-substring-search # Search in substrings.
 
@@ -105,6 +106,8 @@ if ! zgen saved; then # Check if there's no init script.
 
   zgen load rimraf/k # Tool alternative to `ls`.
   zgen load alem0lars/zsh-external-tools # Support for external tools.
+
+  zgen load Tarrasch/zsh-autoenv # Autoenv for ZSH.
 
   zgen load sindresorhus/pure # Load theme.
 

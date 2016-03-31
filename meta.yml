@@ -2,7 +2,7 @@ commands:
 
   - type: git_sync
     repo: https://github.com/tarjoilija/zgen
-    dst: "<%= get_var! :"zsh.custom_dir", type: :directory %>/plugins/zgen"
+    dst: "<%= get_var! :'zsh.custom_dir', type: :directory %>/plugins/zgen"
     only:
       features:
         - zsh
@@ -10,25 +10,25 @@ commands:
 elems:
 
   - src: elems/(zshrc)$
-    dst: "<%= get_var! :"zsh.zshrc_path", type: :file %>"
+    dst: "<%= get_var! :'zsh.zshrc_path', type: :file %>"
     only:
       features:
         - zsh
 
   - src: elems/(zshenv)$
-    dst: "<%= get_var! :"zsh.zshenv_path", type: :file %>"
+    dst: "<%= get_var! :'zsh.zshenv_path', type: :file %>"
     only:
       features:
         - zsh
 
   - src: elems/(zlogin)$
-    dst: "<%= get_var! :"zsh.zlogin_path", type: :file %>"
+    dst: "<%= get_var! :'zsh.zlogin_path', type: :file %>"
     only:
       features:
         - zsh
 
   - src: elems/(zlogout)$
-    dst: "<%= get_var! :"zsh.zlogout_path", type: :file %>"
+    dst: "<%= get_var! :'zsh.zlogout_path', type: :file %>"
     only:
       features:
         - zsh
