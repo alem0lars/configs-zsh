@@ -1,1 +1,4 @@
 # => inherits: generic, user-level, with-vim <= #
+
+env_vars:
+  FIZZY_DIR: /home/alem0lars/.fizzy
