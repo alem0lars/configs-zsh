@@ -38,6 +38,7 @@
 # ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
   variable :"zsh.custom_dir", type: :directory, default: [], as: :custom_dir
+  variable :"env_vars", default: []
 end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
@@ -48,5 +49,11 @@ function {
     source "${zprofile_path}"
   fi
 }
+
+<% if local? :env_vars %>
+<% local!(:env_vars).each do |name, value| %>
+export <%= name %>=<%= value %>
+<% end -%>
+<% end -%>
 
 # vim: filetype=eruby.zsh :
