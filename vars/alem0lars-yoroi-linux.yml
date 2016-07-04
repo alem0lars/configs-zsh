@@ -2,3 +2,6 @@
 
 env_vars:
   FIZZY_DIR: /home/alem0lars/.fizzy
+
+features:
+  - ranger
