@@ -56,7 +56,7 @@ export <%= name %>=<%= value %>
 <% end -%>
 <% end -%>
 
-<% if has_feature :ranger %>
+<% if has_feature? :ranger %>
 export RANGER_LOAD_DEFAULT_RC=FALSE
 <% end -%>
 
