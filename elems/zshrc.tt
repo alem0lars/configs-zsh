@@ -108,8 +108,6 @@ if ! zgen saved; then # Check if there's no init script.
   zgen load alem0lars/zsh-external-tools # Support for external tools.
 
   zgen load Tarrasch/zsh-autoenv # Autoenv for ZSH.
-  
-  zgen load b4b4r07/emoji-cli # Emoji autocompletion.
 
   zgen load sindresorhus/pure # Load theme.
 
