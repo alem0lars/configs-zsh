@@ -1,0 +1,8 @@
+# => inherits: generic, userwide, with-vim, with-ranger <= #
+
+
+env_vars:
+  FIZZY_DIR: /home/alem0lars/.fizzy
+
+
+# vim: set filetype=eruby.yaml :

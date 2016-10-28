@@ -1,0 +1,10 @@
+zsh:
+  zshrc_path: /etc/zsh/zshrc
+  zshenv_path: /etc/zsh/zshenv
+  zlogin_path: /etc/zsh/zlogin
+  zlogout_path: /etc/zsh/zlogout
+  history_file: /etc/zsh/zhistory
+  custom_dir: /etc/zsh
+
+
+# vim: set filetype=eruby.yaml :

@@ -1,36 +1,27 @@
 commands:
 
-  - type: git_sync
+  - type: sync
     repo: 'https://github.com/tarjoilija/zgen'
-    dst: "<%= get_var! :'zsh.custom_dir', type: :directory %>/plugins/zgen"
-    only:
-      features:
-        - zsh
+    dst:  "<%= get_var! :'zsh.custom_dir', type: :directory %>/plugins/zgen"
+    only: f?zsh
 
 elems:
 
-  - src: elems/(zshrc)$
-    dst: "<%= get_var! :'zsh.zshrc_path', type: :file %>"
-    only:
-      features:
-        - zsh
+  - src:  ^(zshrc)$
+    dst:  "<%= get_var! :'zsh.zshrc_path', type: :file %>"
+    only: f?zsh
 
-  - src: elems/(zshenv)$
-    dst: "<%= get_var! :'zsh.zshenv_path', type: :file %>"
-    only:
-      features:
-        - zsh
+  - src:  ^(zshenv)$
+    dst:  "<%= get_var! :'zsh.zshenv_path', type: :file %>"
+    only: f?zsh
 
-  - src: elems/(zlogin)$
-    dst: "<%= get_var! :'zsh.zlogin_path', type: :file %>"
-    only:
-      features:
-        - zsh
+  - src:  ^(zlogin)$
+    dst:  "<%= get_var! :'zsh.zlogin_path', type: :file %>"
+    only: f?zsh
 
-  - src: elems/(zlogout)$
-    dst: "<%= get_var! :'zsh.zlogout_path', type: :file %>"
-    only:
-      features:
-        - zsh
+  - src:  ^(zlogout)$
+    dst:  "<%= get_var! :'zsh.zlogout_path', type: :file %>"
+    only: f?zsh
+
 
 # vim: set filetype=eruby.yaml :
