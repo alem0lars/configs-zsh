@@ -101,6 +101,12 @@ if ! zgen saved; then # Check if there's no init script.
   # Save all to init script.
   zgen save
 fi
+# ──────────────────────────────────────────────────────── Load system stuff ──┤
+if [[ -d "/usr/share/zsh/site-contrib" ]]; then
+  for f in $(ls "/usr/share/zsh/site-contrib"); do
+    source "/usr/share/zsh/site-contrib/${f}"
+  done
+fi
 # ─────────────────────────────────────────────────────────────────────────────┘
 
 
