@@ -72,11 +72,15 @@ if [[ -n "${key_info}" ]]; then
     bindkey -M "$keymap" "$key_info[Down]" history-substring-search-down
   done
 fi
+# Initialize abbrev-alias.
+abbrev-alias --init
 # ────────────────────────────────────────────────────── Plugins Declaration ──┤
 if ! zgen saved; then # Check if there's no init script.
 
   zgen load Tarrasch/zsh-functional # Functional-style functions.
   zgen load mafredri/zsh-async # Async functions.
+
+  zgen load momo-lab/zsh-abbrev-alias # Abbreviations (like fish :D)
 
   zgen load alem0lars/zsh-environment # Basic ZSH environment.
   zgen load alem0lars/zsh-editor # Input-line editing capabilities.
@@ -90,7 +94,6 @@ if ! zgen saved; then # Check if there's no init script.
   zgen load zsh-users/zsh-completions # Additional completion definitions.
   zgen load alem0lars/zsh-complete # Completion behaviour.
 
-  zgen load momo-lab/zsh-abbrev-alias # Abbreviations (like fish :D)
   zgen load Tarrasch/zsh-bd # Jump back to a specific directory.
   zgen load rimraf/k # Tool alternative to `ls`.
   zgen load alem0lars/zsh-external-tools # Support for external tools.
