@@ -69,7 +69,7 @@ if [[ -n "${key_info}" ]]; then
   bindkey -M vicmd "j" history-substring-search-down
   # Emacs and Vi.
   for keymap in 'emacs' 'viins'; do
-    bindkey -M "$keymap" "$key_info[Up]" history-substring-search-up
+    bindkey -M "$keymap" "$key_info[Up]"   history-substring-search-up
     bindkey -M "$keymap" "$key_info[Down]" history-substring-search-down
   done
 fi
@@ -79,7 +79,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=32
 # CTRL+space: Accept the current suggestion.
 bindkey "$key_info[Control] " autosuggest-accept
 # CTRL+f: Accept the next word of the current suggestion.
-bindkey "$key_info[Control]f" forward-word
+bindkey "$key_info[Control]F" forward-word
 
 # Initialize abbrev-alias.
 abbrev-alias --init
