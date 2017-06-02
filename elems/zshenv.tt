@@ -42,6 +42,7 @@
 end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 function {
   zprofile_path="<%= local! :custom_dir %>/zprofile"
@@ -59,5 +60,6 @@ export <%= name %>=<%= value %>
 <% if has_feature? :ranger %>
 export RANGER_LOAD_DEFAULT_RC=FALSE
 <% end -%>
+
 
 # vim: filetype=eruby.zsh :
