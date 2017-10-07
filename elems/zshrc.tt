@@ -40,6 +40,7 @@ end %>
 
 
 # ┌──────────────────────────────────────────────────── Global configuration ──┐
+
 export ZSH_ROOT_DIR="<%= local! :custom_dir %>"
 export ZSH_PLUGINS_DIR="${ZSH_ROOT_DIR}/plugins"
 export ZSH_PLUGINS_CONFIGS_DIR="${ZSH_PLUGINS_DIR}/configs"
@@ -47,12 +48,18 @@ export ZSH_CACHE_DIR="${HOME}/.zcache"
 [[ ! -d ${ZSH_CACHE_DIR} ]] && mkdir -p "${ZSH_CACHE_DIR}"
 export ZGEN_DIR="${ZSH_PLUGINS_DIR}/repos"
 export ZGEN_INIT="${ZSH_PLUGINS_DIR}/init.zsh"
+
 # ────────────────────────────────────────────────────── Zstyles for plugins ──┤
+
 zstyle ':editor' dot-expansion 'yes'
 zstyle ':editor' key-bindings  '<%= has_feature?(:vim) ? :vi : :emacs %>'
+
 # ──────────────────────────────────────────────────────────────── Load ZGen ──┤
+
 source "${ZSH_PLUGINS_DIR}/zgen/zgen.zsh"
+
 # ─────────────────────────────────────────────── Plugins Post-configuration ──┤
+
 # Configure `zsh-syntax-highlighting`.
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root)
 
@@ -82,8 +89,14 @@ bindkey "$key_info[Control] " autosuggest-accept
 bindkey "$key_info[Control]F" forward-word
 
 # Initialize abbrev-alias.
-abbrev-alias --init
+if which abbrev-alias > /dev/null 2>&1; then
+  abbrev-alias --init
+else
+  echo 'Missing command `abbrev-alias`: skipping aliases initialization'
+fi
+
 # ────────────────────────────────────────────────────── Plugins Declaration ──┤
+
 if ! zgen saved; then # Check if there's no init script.
 
   zgen load Tarrasch/zsh-functional # Functional-style functions.
@@ -110,17 +123,20 @@ if ! zgen saved; then # Check if there's no init script.
 
   zgen load Tarrasch/zsh-autoenv # Autoenv for ZSH.
 
-  zgen load sindresorhus/pure # Load theme.
+  zgen load alem0lars/zsh-apr # Load theme.
 
   # Save all to init script.
   zgen save
 fi
+
 # ──────────────────────────────────────────────────────── Load system stuff ──┤
+
 if [[ -d "/usr/share/zsh/site-contrib" ]]; then
   for f in $(ls "/usr/share/zsh/site-contrib"); do
     source "/usr/share/zsh/site-contrib/${f}"
   done
 fi
+
 # ─────────────────────────────────────────────────────────────────────────────┘
 
 
