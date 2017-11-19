@@ -131,7 +131,7 @@ fi
 
 # ──────────────────────────────────────────────────────── Load system stuff ──┤
 
-for _base_dir in ("/usr/share/zsh/site-contrib" "/usr/local/share/zsh/site-contrib"); do
+for _base_dir in "/usr/share/zsh/site-contrib" "/usr/local/share/zsh/site-contrib"; do
   if [[ -d "${_base_dir}" ]]; then
     for f in $(ls "${_base_dir}"); do
       source "${_base_dir}/${f}"
