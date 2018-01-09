@@ -34,10 +34,20 @@
 #                                                                              │
 # ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
-  variable :"zsh.custom_dir", type: :directory, default: [], as: :custom_dir
+  variable "zsh.custom_dir", type: :directory, as: :custom_dir
 end %>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
+
+# ──────────────────────────────────────────────────────── Load system stuff ──┤
+
+for _base_dir in "/usr/share/zsh/site-contrib" "/usr/local/share/zsh/site-contrib"; do
+  if [[ -d "${_base_dir}" ]]; then
+    for f in $(ls "${_base_dir}"); do
+      source "${_base_dir}/${f}"
+    done
+  fi
+done
 
 # ┌──────────────────────────────────────────────────── Global configuration ──┐
 
@@ -118,26 +128,20 @@ if ! zgen saved; then # Check if there's no init script.
   zgen load alem0lars/zsh-complete # Completion behaviour.
 
   zgen load Tarrasch/zsh-bd # Jump back to a specific directory.
-  zgen load rimraf/k # Tool alternative to `ls`.
-  zgen load alem0lars/zsh-external-tools # Support for external tools.
+  zgen load uvaes/fzf-marks # Bookmarks (searchable with fzf).
+  zgen load seletskiy/zsh-fuzzy-search-and-edit # Search files and edit them.
+  zgen load wookayin/fzf-fasd # Open fzf's recent directories with fzf.
+  zgen load psprint/zsh-editing-workbench # Edit command-line.
 
   zgen load Tarrasch/zsh-autoenv # Autoenv for ZSH.
+
+  zgen load alem0lars/zsh-external-tools # Support for external tools.
 
   zgen load alem0lars/zsh-apr # Load theme.
 
   # Save all to init script.
   zgen save
 fi
-
-# ──────────────────────────────────────────────────────── Load system stuff ──┤
-
-for _base_dir in "/usr/share/zsh/site-contrib" "/usr/local/share/zsh/site-contrib"; do
-  if [[ -d "${_base_dir}" ]]; then
-    for f in $(ls "${_base_dir}"); do
-      source "${_base_dir}/${f}"
-    done
-  fi
-done
 
 # ─────────────────────────────────────────────────────────────────────────────┘
 
