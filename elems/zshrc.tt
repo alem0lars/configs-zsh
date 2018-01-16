@@ -129,7 +129,6 @@ if ! zgen saved; then # Check if there's no init script.
 
   zgen load Tarrasch/zsh-bd # Jump back to a specific directory.
   zgen load uvaes/fzf-marks # Bookmarks (searchable with fzf).
-  zgen load seletskiy/zsh-fuzzy-search-and-edit # Search files and edit them.
   zgen load wookayin/fzf-fasd # Open fzf's recent directories with fzf.
   zgen load psprint/zsh-editing-workbench # Edit command-line.
 
